@@ -42,6 +42,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">Reservation</a></li>
+                        <li><a href="#">Contacts</a></li>
+
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
