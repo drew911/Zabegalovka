@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Validation\Rule;
+use Auth;
 class userController extends Controller
 {
     /**
@@ -57,10 +58,14 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+      $user = Auth::user();
+        return view('editUser', [
+          'user' => $user
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,10 +74,23 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+
+    public function update(Request $request)
     {
-        //
+      $user = Auth::user();
+      $this->validate($request, array(
+        'email' => Rule::unique('users')->ignore($user->id, 'id')
+      ));
+      $input = $request->except('password');
+      // if ($request->has('password')){
+      // $input['password'] = bcrypt($request->get('password'));
+      // };
+       $user->update($input);
+      return redirect('user');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
