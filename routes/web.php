@@ -22,3 +22,8 @@ Route::get('/', 'mainPageController@index')->name('index');
 Route::get('/user', 'userController@show')->name('user');
 Route::get('/editUser', 'userController@edit')->name('editUser');
 Route::post('/updateUser', 'userController@update')->name('updateUser');
+Route::get('/dishes', 'dishesController@index')->name('dishes');
+Route::get('/createDishes', 'dishesController@create')->name('createDishes')->middleware('admin');
+Route::post('/storeDishes', 'dishesController@store')->name('storeDishes')->middleware('admin');
+Route::get('/editDish/{id}', 'dishesController@edit')->name('editDish')->middleware('admin');
+Route::get('/deleteDish/{id}', 'dishesController@destroy')->name('deleteDish')->middleware('admin');

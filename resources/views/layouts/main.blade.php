@@ -52,7 +52,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        <li><a href="#">Menu</a></li>
+                        <li><a href="/dishes">Dishes</a></li>
                         <li><a href="#">Reservation</a></li>
                         <li><a href="#">Contacts</a></li>
 
