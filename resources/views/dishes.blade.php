@@ -27,7 +27,10 @@
                   <p>{{$dish->price}} &euro;</p>
                   <p>
 
-
+                    @if((Auth::check()) && (Auth::user()->is_admin == 1))
+                   <a href="{{route('editDish', $dish->id)}}" class="btn btn-success" role="button">Edit</a>
+                   <a href="{{route('deleteDish', $dish->id)}}" class="btn btn-danger" role="button">Delete</a>
+                   @endif
 
                   <a href="#" class="btn btn-primary" role="button">Add to cart</a></p>
                 </div>

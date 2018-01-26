@@ -27,3 +27,4 @@ Route::get('/createDishes', 'dishesController@create')->name('createDishes')->mi
 Route::post('/storeDishes', 'dishesController@store')->name('storeDishes')->middleware('admin');
 Route::get('/editDish/{id}', 'dishesController@edit')->name('editDish')->middleware('admin');
 Route::get('/deleteDish/{id}', 'dishesController@destroy')->name('deleteDish')->middleware('admin');
+Route::post('/updateDish/{id}', 'dishesController@update')->name('updateDish')->middleware('admin');
