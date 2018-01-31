@@ -28,3 +28,5 @@ Route::post('/storeDishes', 'dishesController@store')->name('storeDishes')->midd
 Route::get('/editDish/{id}', 'dishesController@edit')->name('editDish')->middleware('admin');
 Route::get('/deleteDish/{id}', 'dishesController@destroy')->name('deleteDish')->middleware('admin');
 Route::post('/updateDish/{id}', 'dishesController@update')->name('updateDish')->middleware('admin');
+Route::get('/cart', 'CartController@index')->name('cart');
+Route::post('/addToCart/{id}', 'CartController@store')->name('addToCart');

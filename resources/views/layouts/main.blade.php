@@ -12,16 +12,17 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,600,600i,700,800,900|Sedgwick+Ave" rel="stylesheet">
 
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Zabegalovka') }}</title>
+    <title>{{ config('app.name', '') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -38,8 +39,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Zabegalovka') }}
+                    <a class="navbar-brand" href="{{ '/' }}">
+                      <img src="{{ url('storage/photos/logo.png') }}">
                     </a>
                 </div>
 
@@ -83,7 +84,21 @@
                                 </ul>
                             </li>
                         @endguest
+
                     </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                      <li id="cart">
+                           <a href="{{ route('cart') }}">
+                           Cart (<span class="cart-size"> {{}} </span>)
+                           <small>
+                               - <span class="cart-total">
+                   0.00</span> &euro;
+                           </small>
+                           </a>
+                       </li>
+                   </ul>
+
                 </div>
             </div>
         </nav>
@@ -93,5 +108,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+@yield('javascript')
 </body>
 </html>
