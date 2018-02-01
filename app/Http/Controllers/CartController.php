@@ -63,7 +63,7 @@ class CartController extends Controller
     // }
     public function show($_token)  // ar veiks????
     {
-        dd($_token)
+        // dd($_token)
     }
 
 

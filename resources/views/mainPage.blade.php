@@ -14,7 +14,7 @@
  <!-- Wrapper for slides -->
  <div class="carousel-inner">
    <div class="item active">
-     <img src="{{ url('storage/photos/01.jpg') }}" alt="Krokodilienos saslikas">
+     <img src="{{ url('storage/photos/01.jpg') }}" alt="">
      <div class="carousel-caption">
        <h2>Healthy - means delicious in "SPOT"</h2>
        <p></p>

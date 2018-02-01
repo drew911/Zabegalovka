@@ -90,10 +90,10 @@
                     <ul class="nav navbar-nav navbar-right">
                       <li id="cart">
                            <a href="{{ route('cart') }}">
-                           Cart (<span class="cart-size"> {{}} </span>)
+                           Cart (<span class="cart-size">{{$cartSize}} </span>)
                            <small>
                                - <span class="cart-total">
-                   0.00</span> &euro;
+                   {{$totalPrice}}</span> &euro;
                            </small>
                            </a>
                        </li>

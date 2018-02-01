@@ -2,11 +2,23 @@
 
 namespace App;
 
+// use App\Dishes;
 use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
 
+  protected $table = 'carts';
+
+  public function dishes(){
+    return $this->belongsTo('App\Dishes', 'dish_id');
+    // $dishes = App\Cart::find(1)->dishes;
+    // foreach ($dishes as $dish){
+    // }
+
+    // return $this->hasMany('App\Dishes', 'dish_id', 'id');
+  }
+  //Dishes -> id = Carts -> dish_id
 
 
   // public $items = null;
