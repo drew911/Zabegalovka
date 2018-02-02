@@ -5,44 +5,53 @@ use Illuminate\Support\Facades\View;
 // use Illuminate\Eloquent\Collection;
 use Closure;
 use App\Cart;
+use App\Helpers\CartHelper;
 
 class CheckCart
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
-    {
+  /**
+  * Handle an incoming request.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @param  \Closure  $next
+  * @return mixed
+  */
 
-        // $carts = Carts::all();
-        $token = csrf_token();
-        $carts = Cart::WHERE ('token', $token)->get();
-        // dd($carts);
-        $cartSize = $carts->count();
-        // dd($cartSize);
-        // $totalPrice = Cart::WHERE('token', $token)->dishes()->SELECT (['price']);
+  protected $cartHelper;
 
-        // $totalPrice = Cart::WHERE ('token', $token)->get();
-        // dump($totalPrice);
+  public function __construct(CartHelper $cartHelper){
+    $this->cartHelper = $cartHelper;
+  }
 
 
-        // $totalPrice = Cart::WHERE ('token', $token)->get('price');
-        $totalPrice = 0;
-        foreach ($carts as $cart) {
-          // dd($cart->dishes->price);
-          // dump($cart->id);
-          $totalPrice = $cart->dishes->price + $totalPrice;
-          // $totalPrice = $cart['price'] + $totalPrice;
-          //cart modelyje aprasyti sarysi su dish id su cart'o dish id
-          //is modelio pasiimam Cart::carts -> dish_id -> price
-        }
+  public function handle($request, Closure $next)
+  {
+    // $token = csrf_token();
+    // $carts = Cart::WHERE ('token', $token)->get();
+    // $cartSize = 10;
+    //
+    // $totalPrice = 100;
+    // foreach ($carts as $cart) {
+    //   // $dishes = $cart->dishes;
+    //   $totalPrice = $cart->dishes->price + $totalPrice;
+    // }
 
-        View::share('cartSize',$cartSize);
-        View::share('totalPrice',$totalPrice);
-        return $next($request);
-    }
+    // $dishes = $carts->dishes;
+    // dump($dishes);
+    $cartSize = $this->cartHelper->getQuantity();
+    $totalPrice = $this->cartHelper->getTotal();
+    $vat = $this->cartHelper->getVat();
+    $beforeTaxes = $this->cartHelper->getbeforeTaxes();
+
+    View::share('cartSize',$cartSize);
+    View::share('totalPrice',$totalPrice);
+    View::share('vat',$vat);
+    View::share('beforeTaxes',$beforeTaxes);
+
+
+    return $next($request);
+  }
+
+
+
 }

@@ -4,6 +4,7 @@ namespace App;
 
 // use App\Dishes;
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\CartHelper;
 
 class Cart extends Model
 {
@@ -18,13 +19,14 @@ class Cart extends Model
 
     // return $this->hasMany('App\Dishes', 'dish_id', 'id');
   }
+
   //Dishes -> id = Carts -> dish_id
 
 
   // public $items = null;
   // public $totalQuantity = 0;
   // public $totalPrice = 0;
-  //
+
   // public function __construct($otherCart)
   // {
   //   if ($otherCart) {
@@ -33,7 +35,7 @@ class Cart extends Model
   //     $this->totalPrice = $otherCart->totalPrice;
   //   }
   // }
-  //
+
   // public function getPrice()
   // {
   //   return $this->nettprice * 1.21;

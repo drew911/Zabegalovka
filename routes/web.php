@@ -30,3 +30,4 @@ Route::get('/deleteDish/{id}', 'dishesController@destroy')->name('deleteDish')->
 Route::post('/updateDish/{id}', 'dishesController@update')->name('updateDish')->middleware('admin');
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::post('/addToCart/{id}', 'CartController@store')->name('addToCart');
+Route::get('/makeOrder', 'OrdersController@create')->name('makeOrder');

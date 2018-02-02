@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cart;
-use App\Dishes;
-use App\Helpers\CartHelper;
-use App\Http\Middleware\CheckCart;
+use App\Orders;
+use App\User;
 
-class CartController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-      $token = csrf_token();
-      $carts = Cart::WHERE ('token', $token)->get();
-      // $priceWithVat = $totalPrice * 1.21;
-      return view('cart', [
-          'carts' => $carts
-      ]);
-
-      // return view ('cart');
+        //
     }
 
     /**
@@ -34,7 +25,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        return view ('orders');
     }
 
     /**
@@ -45,19 +36,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-
-      $cart = new Cart;
-      $cart->token = $request->_token;
-
-      $cart->dish_id = $request->id;
-      $cart->save();
-
-      $dish = Dishes::where('id', $request->id)->first();
-
-      $cart->price = $dish->price;
-
-      echo json_encode($cart);
-
+        //
     }
 
     /**
@@ -66,16 +45,10 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     //
-    // }
-    public function show($_token)  // ar veiks????
+    public function show($id)
     {
-        // dd($_token)
+        //
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
