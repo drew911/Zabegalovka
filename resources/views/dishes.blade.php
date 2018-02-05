@@ -75,7 +75,7 @@
                 data: form.serialize(),
                 success: function(data){
 
-                    data = JSON.parse(data); // duomenis isverciam i masyva
+                    data = JSON.parse(data); // srtinga isverciam i masyva
 
 
                     var cartTotal = $('#cart .cart-total'), // priskiriam klase

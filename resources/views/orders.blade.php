@@ -17,12 +17,12 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-3">
-          @foreach ($dishes as $dish)
+          {{--@foreach ($dishes as $dish)
           <h4>{{$order->dishes->name}}</h4>
-          @endforeach
+          @endforeach--}}
         </div>
         <div class="col-md-3">
-          <p>price: {{$order->totalPrice}} &euro; </p>
+          <p>price: {{$order->total_amount}} &euro; </p>
         </div>
         <div class="col-md-3">
           Date: irasyti data

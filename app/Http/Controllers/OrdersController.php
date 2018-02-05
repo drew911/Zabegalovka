@@ -7,10 +7,21 @@ use App\Orders;
 use App\User;
 use App\Cart;
 use Auth;
+use App\Helpers\CartHelper;
 // use App\Http\Controllers\Controller;
 
 class OrdersController extends Controller
+
 {
+
+    protected $cartHelper;
+
+    public function __construct(CartHelper $cartHelper) {
+      $this->cartHelper = $cartHelper;
+      // $this->view = $view;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +33,14 @@ class OrdersController extends Controller
 
     public function index()
     {
-      return view ('orders');
+
+
+      $user = Auth::user()->id;
+      $orders = Orders::WHERE ('user_id', $user)->get();
+      return view('orders', [
+          'orders' => $orders
+      ]);
+
   }
 
     /**
@@ -32,9 +50,20 @@ class OrdersController extends Controller
      */
     public function create()
     {
-      // dd(Auth::user());
-      $orders = Orders::all();
+      //$orders = Orders::all();
+        //
+        // $post = [
+        //   'user_id' => $user_id,
+        //   'total_amount' => $total_amount,
+        //   'tax_amount' => $tax_amount
+        // ]
+
+        // $orders = Auth::user()->orders;
+
+      // jei auth (true) - >  show order
       // $orders = Auth::user()->orders;
+      //else go to route register user
+
       $orders->transform (function($order, $key){
         $order->cart = $order->cart;
         return $order;
@@ -49,17 +78,27 @@ class OrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
 
-      $orders = new Orders;
-      $orders->token = $request->_token;
-      $orders->user_id = $request->id;
-      $orders->save();
-      $user = User::where('id', $request->id)->first();
-      $orders->totalPrice = $cart->totalPrice;
-      return view ('orders');
 
+
+      if (Auth::check()) {
+
+        $orders = new Orders;
+        $orders->user_id = Auth::user()->id;
+        //$orders->token = $request->_token;
+        $orders->total_amount = $this->cartHelper->getTotal();
+        $orders->tax_amount = $this->cartHelper->getVat();
+        // dd($orders->tax_amount);
+        $orders->save();
+
+        // $user = User::where('id', $request->id)->first();
+        return redirect()->route('orders');
+
+      } else {
+        return redirect()->route('login');
+      }
 
       // $post = [
       //       'name' => $name,

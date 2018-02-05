@@ -63,7 +63,10 @@
 
   <div class="row">
     <div class="col-md-12">
-      <a href="{{ route('makeOrder') }}" class="btn btn-big" role="button">Make Order</a>
+      <form method="post" action="{{ route('makeOrder') }}" class="form-horizontal">
+        {{csrf_field()}}
+        <button type="submit" class="btn btn-big" role="button">Make Order</button>
+      </form>
     </div>
   </div>
 
