@@ -47,4 +47,37 @@ class CartHelper
     return $beforeTaxes;
   }
 
+  public function add($item, $id)
+     {
+         $storedItem = ['quantity' => 0, 'price' => $item->getbeforeTaxes(), 'item' => $item];
+         if ($this->items) {
+             if (array_key_exists($id, $this->items)) {
+                 $storedItem = $this->items[$id];
+             }
+         }
+         $storedItem['quantity']++;
+         $storedItem['price'] = $item->getBeforeTaxes() * $storedItem['quantity'];
+         $this->items[$id] = $storedItem;
+         $this->$cartSize++;
+         $this->totalPrice += $item->getBeforeTaxes();
+     }
+
+
+     public function minus($id)
+     {
+         $this->items[$id]['quantity']--;
+         $this->items[$id]['price'] -= $this->items[$id]['item']->getBeforeTaxes();
+         $this->$cartSize--;
+         $this->totalPrice =$this->items[$id]['item']->getBeforeTaxes() * $this->$cartSize;
+
+         if ($this->items[$id]['quantity'] <= 0) {
+             unset($this->items[$id]);
+         }
+     }
+
+     public function deleteFromCart($cart)
+     {
+         $cart->delete();
+     }
+
 }

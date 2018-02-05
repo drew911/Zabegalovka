@@ -14,7 +14,7 @@
  <!-- Wrapper for slides -->
  <div class="carousel-inner">
    <div class="item active">
-     <img src="{{ url('storage/photos/01.jpg') }}" alt="">
+     <img src="{{ url('storage/photos/spot interior1.jpg') }}" alt="">
      <div class="carousel-caption">
        <h2>Healthy - means delicious in "SPOT"</h2>
        <p></p>
@@ -22,7 +22,7 @@
    </div>
 
    <div class="item">
-     <img src="{{ url('storage/photos/02.jpg') }}" alt="">
+     <img src="{{ url('storage/photos/spot interior2.jpg') }}" alt="">
      <div class="carousel-caption">
        <h2>Healthy - means delicious in "SPOT"</h2>
        <p></p>
@@ -30,7 +30,7 @@
    </div>
 
    <div class="item">
-     <img src="{{ url('storage/photos/03.jpg') }}" alt=" ">
+     <img src="{{ url('storage/photos/spot interior3.jpg') }}" alt=" ">
      <div class="carousel-caption">
        <h2>Healthy - means delicious in "SPOT"</h2>
        <p></p>

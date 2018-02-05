@@ -10,6 +10,31 @@ use App\Http\Middleware\CheckCart;
 
 class CartController extends Controller
 {
+  public function add(Request $request, $id)
+    {
+        $cart = Cart::find($id);
+        $cart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($cart);
+        $cart->add($dish, $dish->id);
+
+        $request->session()->put('cart', $cart);
+        return redirect('cart');
+    }
+
+    public function minus($id)
+    {
+        $cart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($cart);
+        $cart->reduce($id);
+
+         if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        return redirect('cart');
+      }
     /**
      * Display a listing of the resource.
      *
@@ -108,6 +133,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cart=Cart::findOrFail($id);
+        $this->CartHelper->deleteFromCart($cart);
+        return redirect()->route('cart');
     }
 }

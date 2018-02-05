@@ -13,7 +13,7 @@
   <div class="row">
 
 
-@foreach ($carts as $cart)
+    @foreach ($carts as $cart)
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-4">
@@ -23,20 +23,23 @@
           <h3>{{$cart->dishes->name}}</h3>
         </div>
         <div class="col-md-2">
-          <p><button class="btn btn-primary">-</button> 1 <button class="btn btn-primary">+</button></p>
+          <!-- <p><button class="btn btn-primary">-</button> 1 <button class="btn btn-primary">+</button></p> -->
+          <a href="{{ route('cart.minus', ['id'=>$cart['item']['id']]) }}"><i class="fa fa-minus-square fa-lg" ></i>&nbsp;&nbsp;</a>
+          {{ $cart ['quantity'] }}
+          <a href="{{ route('cart.add', ['id'=>$cart['item']['id']]) }}">&nbsp;&nbsp;<i class="fa fa-plus-square fa-lg" ></i></a>
         </div>
         <div class="col-md-2">
           <p>price: {{$cart->dishes->price}} &euro; </p>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-danger">remove from list</button>
+          <button class="btn btn-danger" src="{{route('deleteFromCart', $cart->id)}}">remove from cart</button>
         </div>
       </div>
     </div>
-  @endforeach
-</div>
+    @endforeach
+  </div>
 
-<div class="row">
+  <div class="row">
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-4">
@@ -52,19 +55,19 @@
           <p>VAT = {{number_format($vat,2)}} &euro; </p>
         </div>
         <div class="col-md-2">
-          <p>Total price with VAT: {{number_format($totalPrice ,2)}} &euro; </p>
+          <p>Total price with VAT: {{number_format($totalPrice,2)}} &euro; </p>
         </div>
       </div>
     </div>
-</div>
+  </div>
 
-<div class="row">
-  <div class="col-md-12">
+  <div class="row">
+    <div class="col-md-12">
       <a href="{{ route('makeOrder') }}" class="btn btn-big" role="button">Make Order</a>
+    </div>
   </div>
-</div>
 
-  </div>
+</div>
 </div>
 
 

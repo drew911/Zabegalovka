@@ -35,6 +35,9 @@ class User extends Authenticatable
       return $this->name . ' ' . $this->surname;
     }
 
+// public function orders(){
+//   return $this->hasMny('App\Order');
+// }
     // public function isAdmin() {
     //   return(boolean) $this->IsAdmin;
     // }
