@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Orders extends Model
 {
   protected $fillable = ['user_id','total_amount','tax_amount'];
+
   protected $table = 'orders';
 
-  public function cart(){
-    return $this->belongsTo('AppCart', 'order_id');
+  public function carts(){
+    return $this->hasMany('App\Cart', 'order_id');
   }
 
   public function user(){

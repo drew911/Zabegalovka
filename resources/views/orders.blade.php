@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class=".col-md-12 to-center">
-      <h2>You have {{$cartSize}} dishes selected </h2>
+      <h2>You have !!kiek orderiu!! orders </h2>
     </div>
   </div>
 </div>
@@ -17,9 +17,9 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-3">
-          {{--@foreach ($dishes as $dish)
-          <h4>{{$order->dishes->name}}</h4>
-          @endforeach--}}
+          @foreach ($order->carts as $cart)
+          <h4>{{$cart->dishes->name}}</h4>
+          @endforeach
         </div>
         <div class="col-md-3">
           <p>price: {{$order->total_amount}} &euro; </p>

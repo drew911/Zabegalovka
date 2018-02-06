@@ -35,11 +35,24 @@ class OrdersController extends Controller
     {
 
 
-      $user = Auth::user()->id;
-      $orders = Orders::WHERE ('user_id', $user)->get();
+      $userId = Auth::user()->id;
+      $orders = Orders::WHERE ('user_id', $userId)->get();
+
+      // $orderId = $orders->id;
+      // dd($orderId);
+      // $carts = Cart::WHERE ('order_id', $orderId)->get();
+      //
+      // foreach ($carts as $cart) {
+      //   $dishId = $cart->id;
+      //
+      // }
+      // $dishes = Dishes::WHERE ('id', $dishesId)->get();
+
+
       return view('orders', [
           'orders' => $orders
       ]);
+
 
   }
 
@@ -81,19 +94,24 @@ class OrdersController extends Controller
     public function store()
     {
 
-
-
       if (Auth::check()) {
 
         $orders = new Orders;
         $orders->user_id = Auth::user()->id;
-        //$orders->token = $request->_token;
         $orders->total_amount = $this->cartHelper->getTotal();
         $orders->tax_amount = $this->cartHelper->getVat();
-        // dd($orders->tax_amount);
         $orders->save();
 
-        // $user = User::where('id', $request->id)->first();
+        $token = csrf_token();
+        $carts = Cart::WHERE ('token', $token)->get(); // atfiltruoti laukus pagal tokena
+        foreach ($carts as $cart) {
+          if ($cart->order_id == NULL) {
+            $cart->order_id = $orders->id;
+            $cart->save();
+          }
+        }
+
+
         return redirect()->route('orders');
 
       } else {

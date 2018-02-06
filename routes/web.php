@@ -30,6 +30,7 @@ Route::get('/deleteDish/{id}', 'dishesController@destroy')->name('deleteDish')->
 Route::post('/updateDish/{id}', 'dishesController@update')->name('updateDish')->middleware('admin');
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::post('/addToCart/{id}', 'CartController@store')->name('addToCart');
+Route::get('/editCart', 'CartController@edit')->name('editCart');
 Route::post('/deleteFromCart/{id}', 'CartController@destroy')->name('deleteFromCart');
 Route::post('/makeOrder', 'OrdersController@store')->name('makeOrder');
 Route::get('/orders', 'OrdersController@index')->name('orders');

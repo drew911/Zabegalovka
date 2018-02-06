@@ -43,7 +43,7 @@ class CartController extends Controller
     public function index()
     {
       $token = csrf_token();
-      $carts = Cart::WHERE ('token', $token)->get();
+      $carts = Cart::WHERE('token', $token)->WHERE('order_id', NULL)->get();
       // $priceWithVat = $totalPrice * 1.21;
       return view('cart', [
           'carts' => $carts
@@ -108,9 +108,9 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+      //
     }
 
     /**
