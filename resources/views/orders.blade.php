@@ -3,8 +3,8 @@
 
 <div class="container">
   <div class="row">
-    <div class=".col-md-12 to-center">
-      <h2>You have !!kiek orderiu!! orders </h2>
+    <div class="col-md-12 to-center">
+      <h2>{{$ordersHeading}}</h2>
     </div>
   </div>
 </div>
@@ -28,7 +28,7 @@
           Date: irasyti data
         </div>
         <div class="col-md-3">
-          <button class="btn btn-danger">Delete order</button>
+          <a class="btn btn-danger" href="{{route('deleteFromOrders', $order->id)}}">Remove from orders</a>
           <button class="btn btn-danger">Pay</button>
         </div>
       </div>

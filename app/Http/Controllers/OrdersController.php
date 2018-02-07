@@ -38,6 +38,19 @@ class OrdersController extends Controller
       $userId = Auth::user()->id;
       $orders = Orders::WHERE ('user_id', $userId)->get();
 
+      // $token = csrf_token();
+      // $orders = Cart::WHERE ('token', $token)->WHERE ('order_id', NULL)->get();
+      $ordersSize = $orders->count();
+      if ($ordersSize == 0){
+        $ordersHeading = "You have no orders";
+      } else if ($ordersSize == 1){
+        $ordersHeading = "You have 1 order";
+      } else {
+        $ordersHeading = "You have " . $ordersSize . " orders";
+      }
+      // return $ordersSize;
+      // dd($ordersSize);
+
       // $orderId = $orders->id;
       // dd($orderId);
       // $carts = Cart::WHERE ('order_id', $orderId)->get();
@@ -50,7 +63,9 @@ class OrdersController extends Controller
 
 
       return view('orders', [
-          'orders' => $orders
+          'orders' => $orders,
+          'ordersSize' => $ordersSize,
+          'ordersHeading' => $ordersHeading
       ]);
 
 
@@ -171,6 +186,8 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $order=Orders::findOrFail($id);
+      $order->delete();
+      return redirect()->route('orders');
     }
 }

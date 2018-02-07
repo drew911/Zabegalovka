@@ -32,7 +32,7 @@
           <p>price: {{$cart->dishes->price}} &euro; </p>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-danger" src="{{route('deleteFromCart', $cart->id)}}">remove from cart</button>
+          <a class="btn btn-danger" href="{{route('deleteFromCart', $cart->id)}}">Remove from cart</a>
         </div>
       </div>
     </div>

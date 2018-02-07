@@ -55,8 +55,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         <li><a href="/dishes">Dishes</a></li>
-                        <li><a href="#">Reservation</a></li>
-                        <li><a href="#">Contacts</a></li>
+
+                        <li><a href="/reservations">Reservation</a></li>
+                        <li><a href="/contacts">Contacts</a></li>
 
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -71,6 +72,7 @@
                                     <li>
                                       <a href="{{ route('user') }}">My Profile</a>
                                     </li>
+                                    <li><a href="/orders">My Orders</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -109,7 +111,7 @@
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 @yield('javascript')

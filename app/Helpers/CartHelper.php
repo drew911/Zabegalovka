@@ -75,9 +75,5 @@ class CartHelper
          }
      }
 
-     public function deleteFromCart($cart)
-     {
-         $cart->delete();
-     }
-
+    
 }
