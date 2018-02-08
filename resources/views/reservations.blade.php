@@ -1,10 +1,6 @@
 @extends('layouts.main')
 @section('content')
 
-
-
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-12 to-center">
@@ -16,7 +12,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 to-center">
-      <a href="{{ route('createReservation') }}" class="btn btn-big" role="button">Add Reservation</a>
+      <a href="{{ route('createReservations') }}" class="btn btn-big" role="button">Add Reservation</a>
     </div>
   </div>
 </div>

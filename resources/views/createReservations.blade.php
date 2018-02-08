@@ -9,7 +9,7 @@
           <div class="panel-title">New Reservation</div>
         </div>
         <div class="panel-body" >
-          <form method="POST" action="{{route('storeReservation')}}" class="form-horizontal" enctype="multipart/form-data" role="form">
+          <form method="POST" action="{{route('storeReservations')}}" class="form-horizontal" enctype="multipart/form-data" role="form">
             {!! csrf_field() !!}
             <fieldset>
               <!-- Text input-->
@@ -57,7 +57,7 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                     <option value="9">9</option>
-                    <option value="10">10</option>                  
+                    <option value="10">10</option>
                   </select>
                 </div>
               </div>

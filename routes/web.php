@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/contacts', 'ContactsController@index')->name('contacts');
 Route::get('/reservations', 'ReservationsController@show')->name('reservations');
 Route::get('/createReservations', 'ReservationsController@create')->name('createReservations');
-Route::get('/storeReservations', 'ReservationsController@store')->name('storeReservations');
+Route::post('/storeReservations', 'ReservationsController@store')->name('storeReservations');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'mainPageController@index')->name('index');

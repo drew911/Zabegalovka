@@ -42,26 +42,30 @@ class ReservationsController extends Controller
           'name' => 'required|max:255',
           'phone' => 'required|numeric',
           'date' => 'required|date',
-          'time' => 'required|time',
+          'time' => 'required|date_format:H:i',
           'duration' => 'required|numeric',
           'guests' => 'required|numeric'
       ]);
 
-
       $name = $request['name'];
-      $description = $request['description'];
-      $price = $request['price'];
+      $phone = $request['phone'];
+      $date = $request['date'];
+      $time = $request['time'];
+      $duration = $request['duration'];
+      $guests = $request['guests'];
 
       $post = [
             'name' => $name,
-            'description' => $description,
-            'price' => $price,
-            'image' => $path
+            'phone' => $phone,
+            'date' => $date,
+            'time' => $time,
+            'duration' => $duration,
+            'guests' => $guests
         ];
         // $post = $request->except('_token');
 
-        Dishes::create($post);
-        return redirect()->route('dishes');
+        Reservations::create($post);
+        return redirect()->route('contacts');
     }
 
     /**
