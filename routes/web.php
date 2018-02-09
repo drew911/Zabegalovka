@@ -21,6 +21,9 @@ Route::get('/contacts', 'ContactsController@index')->name('contacts');
 Route::get('/reservations', 'ReservationsController@show')->name('reservations');
 Route::get('/createReservations', 'ReservationsController@create')->name('createReservations');
 Route::post('/storeReservations', 'ReservationsController@store')->name('storeReservations');
+Route::get('/deleteReservations/{id}', 'ReservationsController@destroy')->name('deleteReservations');
+Route::get('/editReservations/{id}', 'ReservationsController@edit')->name('editReservations');
+
 
 Route::get('/manageReservations', 'ManageReservationsController@index')->name('manageReservations')->middleware('admin');
 

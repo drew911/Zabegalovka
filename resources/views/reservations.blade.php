@@ -31,8 +31,9 @@
           <p>Time: {{$reservation->time}}</p>
           <p>Duration: {{$reservation->duration}}</p>
           <p>Guests: {{$reservation->guests}}</p>
-          <p><a href="{{$reservation->id}}"><button class="btn btn-danger">Delete</button></a>
-          <a href="{{$reservation->id}}/edit"><button class="btn btn-primary">Edit</button></a> </p>
+
+          <p><a href="{{route('deleteReservations', $reservation->id)}}"><button class="btn btn-danger">Delete</button></a>
+          <a href="{{route('editReservations', $reservation->id)}}"><button class="btn btn-primary">Edit</button></a> </p>
         </div>
       @endforeach
 

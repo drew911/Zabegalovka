@@ -105,7 +105,10 @@ class ReservationsController extends Controller
      */
     public function edit($id)
     {
-        //
+      $reservations=Reservations::findOrFail($id);
+      return view('editReservations', [
+          'reservations' => $reservations
+      ]);
     }
 
     /**
@@ -128,6 +131,8 @@ class ReservationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $reservations=Reservations::findOrFail($id);
+      $reservations->delete();
+      return redirect()->route('reservations');
     }
 }
