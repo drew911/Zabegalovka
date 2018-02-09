@@ -15,7 +15,7 @@ class ManageReservationsController extends Controller
      */
     public function index()
     {
-      $reservations = Reservations::all();
+      $reservations = Reservations::orderBy('date', 'asc')->get();
 
       return view('manageReservations', [
           'reservations' => $reservations

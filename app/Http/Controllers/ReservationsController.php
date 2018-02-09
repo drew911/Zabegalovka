@@ -41,7 +41,7 @@ class ReservationsController extends Controller
       $request->validate([
           'name' => 'required|max:255',
           'phone' => 'required|numeric',
-          'date' => 'required|date',
+          'date' => 'required|date|after:created_at',
           'time' => 'required|date_format:H:i',
           'duration' => 'required|numeric',
           'guests' => 'required|numeric'
@@ -87,7 +87,7 @@ class ReservationsController extends Controller
       // dd($token);
       if (Auth::user()){
         $userId = Auth::user()->id;
-        $reservations = Reservations::WHERE ('user_id', $userId)->get();
+        $reservations = Reservations::WHERE ('user_id', $userId)->orderBy('date', 'asc')->get();
         return view('reservations', [
           'reservations' => $reservations
         ]);

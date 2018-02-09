@@ -163,7 +163,7 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
