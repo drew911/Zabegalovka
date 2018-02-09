@@ -14,7 +14,7 @@ class AddUserIdRowToReservationsTable extends Migration
     public function up()
     {
       Schema::table('reservations', function (Blueprint $table) {
-        $table->integer('user_id')->after('name')->default(NULL);
+        $table->integer('user_id')->after('name')->nullable()->defult(NULL);
       });
     }
 
@@ -25,7 +25,7 @@ class AddUserIdRowToReservationsTable extends Migration
      */
     public function down()
     {
-      Schema::table('reservation', function (Blueprint $table) {
+      Schema::table('reservations', function (Blueprint $table) {
           $table->dropColumn('user_id');
       });
     }

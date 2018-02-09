@@ -22,6 +22,8 @@ Route::get('/reservations', 'ReservationsController@show')->name('reservations')
 Route::get('/createReservations', 'ReservationsController@create')->name('createReservations');
 Route::post('/storeReservations', 'ReservationsController@store')->name('storeReservations');
 
+Route::get('/manageReservations', 'ManageReservationsController@index')->name('manageReservations')->middleware('admin');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'mainPageController@index')->name('index');
 Route::get('/user', 'userController@show')->name('user');

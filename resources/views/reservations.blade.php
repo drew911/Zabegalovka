@@ -12,7 +12,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 to-center">
-      <a href="{{ route('createReservations') }}" class="btn btn-big" role="button">Add Reservation</a>
+      @if((Auth::check()) && (Auth::user()->is_admin == 1))
+        <a href="{{ route('manageReservations') }}" class="btn btn-admin btn-big" role="button">Manage Restaurant Reservations</a>
+      @endif
+      <a href="{{ route('createReservations') }}" class="btn btn-big" role="button">New Reservation</a>
     </div>
   </div>
 </div>
