@@ -25,7 +25,7 @@
           <p>price: {{$order->total_amount}} &euro; </p>
         </div>
         <div class="col-md-3">
-          Date: irasyti data
+          <p>Order created: {{$order->created_at}}</p>
         </div>
         <div class="col-md-3">
           <a class="btn btn-danger" href="{{route('deleteFromOrders', $order->id)}}">Remove from orders</a>
