@@ -14,7 +14,7 @@ class AddUserIdRowToReservationsTable extends Migration
     public function up()
     {
       Schema::table('reservations', function (Blueprint $table) {
-        $table->integer('user_id')->after('name')->nullable()->defult(NULL);
+        $table->integer('user_id')->after('name')->nullable()->default(NULL);
       });
     }
 
