@@ -26,7 +26,7 @@ class ReservationsController extends Controller
      */
     public function create()
     {
-        return view('createReservations');
+        return view('reservations');
     }
 
     /**
@@ -106,6 +106,7 @@ class ReservationsController extends Controller
     public function edit($id)
     {
       $reservations=Reservations::findOrFail($id);
+      // $reservations->save();
       return view('editReservations', [
           'reservations' => $reservations
       ]);
@@ -120,7 +121,34 @@ class ReservationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          $reservation=Reservations::findOrFail($id);
+          $request->validate([
+              'name' => 'required|max:255',
+              'phone' => 'required|numeric',
+              'date' => 'required|date|after:created_at',
+              'time' => 'required|date_format:H:i',
+              'duration' => 'required|numeric',
+              'guests' => 'required|numeric'
+          ]);
+
+          $name = $request['name'];
+          $phone = $request['phone'];
+          $date = $request['date'];
+          $time = $request['time'];
+          $duration = $request['duration'];
+          $guests = $request['guests'];
+
+          $post = [
+                'name' => $name,
+                'phone' => $phone,
+                'date' => $date,
+                'time' => $time,
+                'duration' => $duration,
+                'guests' => $guests
+            ];
+
+          $reservation->update($post);
+          return redirect()->route('reservations');
     }
 
     /**

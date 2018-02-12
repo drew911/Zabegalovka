@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Reservations;
 use Auth;
+use Carbon\Carbon;
 
 class ManageReservationsController extends Controller
 {
@@ -15,7 +16,8 @@ class ManageReservationsController extends Controller
      */
     public function index()
     {
-      $reservations = Reservations::orderBy('date', 'asc')->get();
+      $todayDate = Carbon::now()->format('Y-m-d');
+      $reservations = Reservations::WHERE('date', '>=', $todayDate)->orderBy('date', 'asc')->get();
 
       return view('manageReservations', [
           'reservations' => $reservations

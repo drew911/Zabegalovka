@@ -72,7 +72,8 @@
             <p>{{$reservation->created_at}}</p>
           </div>
           <div class="col-md-1">
-            <button>EDIT</button>
+            <a href="{{route('editReservations', $reservation->id)}}"><button class="btn btn-primary">Edit</button></a> </p>
+            <p><a href="{{route('deleteReservations', $reservation->id)}}"><button class="btn btn-danger">Delete</button></a>
           </div>
         </div>
       @endforeach

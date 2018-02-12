@@ -12,7 +12,7 @@
 
 
 
-          <form method="POST" action="{{route('editReservations',$reservations->id)}}" class="form-horizontal" role="form">
+          <form method="POST" action="{{route('updateReservation',$reservations->id)}}" class="form-horizontal" role="form">
             {!! csrf_field() !!}
             <fieldset>
               <!-- Text input-->
