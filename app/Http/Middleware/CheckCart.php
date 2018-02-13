@@ -26,18 +26,7 @@ class CheckCart
 
   public function handle($request, Closure $next)
   {
-    // $token = csrf_token();
-    // $carts = Cart::WHERE ('token', $token)->get();
-    // $cartSize = 10;
-    //
-    // $totalPrice = 100;
-    // foreach ($carts as $cart) {
-    //   // $dishes = $cart->dishes;
-    //   $totalPrice = $cart->dishes->price + $totalPrice;
-    // }
 
-    // $dishes = $carts->dishes;
-    // dump($dishes);
     $cartSize = $this->cartHelper->getQuantity();
     $totalPrice = $this->cartHelper->getTotal();
     $vat = $this->cartHelper->getVat();

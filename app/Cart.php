@@ -9,6 +9,7 @@ use App\Helpers\CartHelper;
 class Cart extends Model
 {
 
+  protected $fillable = ['count'];
   protected $table = 'carts';
 
   public function dishes(){

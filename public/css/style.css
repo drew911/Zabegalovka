@@ -104,3 +104,8 @@ h3 {
     -webkit-transform: translateY(-50%);
 
 }
+
+
+.row {
+  margin-top: 50px;
+}

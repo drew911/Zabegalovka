@@ -14,7 +14,8 @@ class CartHelper
   public function getQuantity(){
     $token = csrf_token();
     $carts = Cart::WHERE ('token', $token)->WHERE ('order_id', NULL)->get();
-    $cartSize = $carts->count();
+    // $cartSize = $carts->count();
+    $cartSize = $carts->sum('count');
     return $cartSize;
   }
 
@@ -24,7 +25,7 @@ class CartHelper
     $carts = Cart::WHERE ('token', $token)->WHERE ('order_id', NULL)->get();
     $totalPrice = 0;
     foreach ($carts as $cart) {
-      $totalPrice = $cart->dishes->price + $totalPrice;
+      $totalPrice = ($cart->dishes->price)*($cart->count) + $totalPrice;
     }
     return $totalPrice;
   }
@@ -75,5 +76,5 @@ class CartHelper
          }
      }
 
-    
+
 }

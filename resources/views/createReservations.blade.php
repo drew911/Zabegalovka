@@ -27,12 +27,18 @@
                 <label class="col-md-3 control-label" for="phone">Phone</label>
                 <div class="col-md-9">
                   <input type="text" name="phone" placeholder="Phone" class="form-control input-md" required="">
+                  @if ($errors->has('phone'))
+                    <i class="has-error ">{{ $errors->first('phone') }}</i></br>
+                  @endif
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-md-3 control-label" for="date">Date</label>
                 <div class="col-md-9">
                   <input name="date" type="date" placeholder="Date" class="form-control input-md" required="">
+                  @if ($errors->has('date'))
+                    <i class="has-error ">{{ $errors->first('date') }}</i></br>
+                  @endif
                 </div>
               </div>
               <div class="form-group">
@@ -72,11 +78,18 @@
               <div class="form-group">
                 <label class="col-md-3 control-label" for="duration">Duration</label>
                 <div class="col-md-9">
-                  <input name="duration" type="text" placeholder="Duration" class="form-control input-md" required="">
+                  <select name="duration" class="form-control input-md">
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="4">4 hours</option>
+                    <option value="5">5 hours</option>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-3 control-label" for="guests">Guests</label>
+                <label class="col-md-3 control-label" for="guests">Persons</label>
                 <div class="col-md-9">
                   <select name="guests" class="form-control input-md">
                     <option value="1">1</option>

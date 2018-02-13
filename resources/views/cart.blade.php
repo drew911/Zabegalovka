@@ -11,33 +11,56 @@
 
 <div class="container">
   <div class="row">
+    <div class="col-md-12">
 
+
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Dishes</h3>
+      </div>
+      <div class="col-md-2">
+        <h3>Quantity</h3>
+      </div>
+      <div class="col-md-2">
+        <h3>Price</h3>
+      </div>
+      <div class="col-md-2">
+        <h3>Actions</h3>
+      </div>
+    </div>
 
     @foreach ($carts as $cart)
-    <div class="col-md-12">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <img class="img-responsive" src="{{$cart->dishes->image}}">
         </div>
-        <div class="col-md-2">
-          <h3>{{$cart->dishes->name}}</h3>
+        <div class="col-md-4">
+          <h4>{{$cart->dishes->name}}</h4>
         </div>
+
         <div class="col-md-2">
-          <p><button class="btn btn-primary">-</button> 1 <button class="btn btn-primary">+</button></p>
-          <a href="{{ route('cart.minus', ['id'=> $cart->dishes->id]) }}"><i class="fa fa-minus-square fa-lg" ></i>&nbsp;&nbsp;</a>
-          {{ $cart ['quantity'] }}
-          <a href="{{ route('cart.add', ['id'=>$cart->dishes->id]) }}">&nbsp;&nbsp;<i class="fa fa-plus-square fa-lg" ></i></a>
+          <p>
+            <a href="{{ route('cart.minus', ['id'=> $cart->dishes->id]) }}" class="btn btn-primary">-</a>
+            {{$cart->count}}
+            <a href="{{ route('cart.add', ['id'=>$cart->dishes->id]) }}" class="btn btn-primary">+</a>
+          </p>
         </div>
+
         <div class="col-md-2">
-          <p>price: {{$cart->dishes->price}} &euro; </p>
+          <p> {{$cart->dishes->price}} &euro; </p>
         </div>
         <div class="col-md-2">
           <a class="btn btn-danger" href="{{route('deleteFromCart', $cart->id)}}">Remove from cart</a>
         </div>
       </div>
-    </div>
     @endforeach
+
+
+    </div>
   </div>
+
+
+
 
   <div class="row">
     <div class="col-md-12">
@@ -46,16 +69,16 @@
           <h3>Cart information</h3>
         </div>
         <div class="col-md-2">
-          <h3>{{$cartSize}} items selected</h3>
+          <h4>{{$cartSize}} items selected</h4>
         </div>
         <div class="col-md-2">
-          <p>Total price: {{number_format($beforeTaxes,2)}} &euro; </p>
+          <h4>Total price: {{number_format($beforeTaxes,2)}} &euro; </h4>
         </div>
         <div class="col-md-2">
-          <p>VAT = {{number_format($vat,2)}} &euro; </p>
+          <h4>VAT = {{number_format($vat,2)}} &euro; </h4>
         </div>
         <div class="col-md-2">
-          <p>Total price with VAT: {{number_format($totalPrice,2)}} &euro; </p>
+          <h4>Total price with VAT: {{number_format($totalPrice,2)}} &euro; </h4>
         </div>
       </div>
     </div>

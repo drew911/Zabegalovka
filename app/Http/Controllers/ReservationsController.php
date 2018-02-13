@@ -16,7 +16,7 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-
+      return view('ReservationThanks');
     }
 
     /**
@@ -26,7 +26,7 @@ class ReservationsController extends Controller
      */
     public function create()
     {
-        return view('reservations');
+        return view('createReservations');
     }
 
     /**
@@ -41,7 +41,7 @@ class ReservationsController extends Controller
       $request->validate([
           'name' => 'required|max:255',
           'phone' => 'required|numeric',
-          'date' => 'required|date|after:created_at',
+          'date' => 'required|date|after:today',
           'time' => 'required|date_format:H:i',
           'duration' => 'required|numeric',
           'guests' => 'required|numeric'
@@ -71,7 +71,14 @@ class ReservationsController extends Controller
         ];
 
         Reservations::create($post);
-        return redirect()->route('reservations');
+
+
+        if (Auth::user()){
+          return redirect()->route('reservations');
+        }else{
+          return redirect()->route('ReservationThanks');
+        }
+
     }
 
     /**
@@ -161,6 +168,6 @@ class ReservationsController extends Controller
     {
       $reservations=Reservations::findOrFail($id);
       $reservations->delete();
-      return redirect()->route('reservations');
+      return redirect()->route('manageReservations');
     }
 }

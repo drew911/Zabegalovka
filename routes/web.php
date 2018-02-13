@@ -25,6 +25,7 @@ Route::get('/deleteReservations/{id}', 'ReservationsController@destroy')->name('
 Route::get('/editReservations/{id}', 'ReservationsController@edit')->name('editReservations');
 Route::get('/manageReservations', 'ManageReservationsController@index')->name('manageReservations')->middleware('admin');
 Route::post('/updateReservation/{id}', 'ReservationsController@update')->name('updateReservation');
+Route::get('/ReservationThanks', 'ReservationsController@index')->name('ReservationThanks');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'mainPageController@index')->name('index');

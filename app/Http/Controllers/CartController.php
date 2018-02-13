@@ -10,30 +10,60 @@ use App\Http\Middleware\CheckCart;
 
 class CartController extends Controller
 {
-  public function add(Request $request, $id)
+  public function add($id)
     {
-        $cart = Cart::find($id);
-        $cart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($cart);
-        $cart->add($dish, $dish->id);
 
-        $request->session()->put('cart', $cart);
-        return redirect('cart');
+
+      $token = csrf_token();
+
+      $sameCart = Cart::WHERE('token', $token)->WHERE('dish_id', $id)->first();
+
+      $count = $sameCart->count;
+      $count++;
+      $sameCart->count=$count;
+      $sameCart->save();
+
+      return redirect('cart');
+
+
+
+        // $cart = Cart::find($id);
+        // $cart = Session::has('cart') ? Session::get('cart') : null;
+        // $cart = new Cart($cart);
+        // $cart->add($dish, $dish->id);
+        //
+        // $request->session()->put('cart', $cart);
+        // return redirect('cart');
     }
 
     public function minus($id)
     {
-        $cart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($cart);
-        $cart->reduce($id);
 
-         if (count($cart->items) > 0) {
-            Session::put('cart', $cart);
-        } else {
-            Session::forget('cart');
-        }
+      $token = csrf_token();
 
-        return redirect('cart');
+      $sameCart = Cart::WHERE('token', $token)->WHERE('dish_id', $id)->first();
+
+      $count = $sameCart->count;
+      $count--;
+      $sameCart->count=$count;
+      if ($sameCart->count > 0) {
+        $sameCart->save();
+      } else {
+        $sameCart->delete();
+      }
+
+      return redirect('cart');
+
+        // $cart = Session::has('cart') ? Session::get('cart') : null;
+        // $cart = new Cart($cart);
+        // $cart->reduce($id);
+        //
+        //  if (count($cart->items) > 0) {
+        //     Session::put('cart', $cart);
+        // } else {
+        //     Session::forget('cart');
+        // }
+
       }
     /**
      * Display a listing of the resource.
@@ -75,7 +105,17 @@ class CartController extends Controller
       $cart->token = $request->_token;
 
       $cart->dish_id = $request->id;
-      $cart->save();
+
+      $sameCart = Cart::WHERE('token', $cart->token)->WHERE('dish_id', $cart->dish_id)->first();
+      if (is_null($sameCart)) {
+          $cart->save();
+      } else {
+          $count = $sameCart->count;
+          $count++;
+          $sameCart->count=$count;
+          $sameCart->save();
+      }
+
 
       $dish = Dishes::where('id', $request->id)->first();
 
