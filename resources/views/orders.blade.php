@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-3">
           <a class="btn btn-danger" href="{{route('deleteFromOrders', $order->id)}}">Remove from orders</a>
-          <button class="btn btn-danger">Pay</button>
+          <!-- <a href="{{route('payment')}}" class="btn btn-danger">Pay</a> -->
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <a href="{{-- route('') --}}" class="btn btn-big" role="button">Pay for all</a>
+      <a href="{{route('payment')}}" class="btn btn-big" role="button">Pay for all</a>
     </div>
   </div>
 </div>

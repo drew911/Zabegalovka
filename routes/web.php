@@ -51,3 +51,5 @@ Route::get('/deleteFromOrders/{id}', 'OrdersController@destroy')->name('deleteFr
 
 Route::get('/minus/{id}', ['uses' => 'CartController@minus','as' => 'cart.minus']);
 Route::get('/add/{id}', ['uses' => 'CartController@add','as' => 'cart.add']);
+
+Route::get('/payment', 'PaymentController@index')->name('payment');

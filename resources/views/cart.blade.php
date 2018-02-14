@@ -47,7 +47,7 @@
         </div>
 
         <div class="col-md-2">
-          <p> {{$cart->dishes->price}} &euro; </p>
+          <p> {{($cart->dishes->price) * ($cart->count)}} &euro; </p>
         </div>
         <div class="col-md-2">
           <a class="btn btn-danger" href="{{route('deleteFromCart', $cart->id)}}">Remove from cart</a>
