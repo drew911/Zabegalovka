@@ -20,14 +20,14 @@
       </div>
       <div class="col-md-4">
         <h3>Rekvizitai</h3>
-        <p>Bank: Gringots </br>
+        <p>Bank: Gringots bank </br>
            Bank account number: HR 36465647272683863 </br>
            Payment purpose:order ID
            @foreach ($orders as $order)
            {{$order->id}} ,
            @endforeach
           </br>
-           Total amount: {{$order->total_amount}}
+           Total amount: {{$totalOrdersAmount}}
           </br>
         </p>
       </div>

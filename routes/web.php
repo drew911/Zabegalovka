@@ -48,6 +48,8 @@ Route::get('/deleteFromCart/{id}', 'CartController@destroy')->name('deleteFromCa
 Route::post('/makeOrder', 'OrdersController@store')->name('makeOrder');
 Route::get('/orders', 'OrdersController@index')->name('orders');
 Route::get('/deleteFromOrders/{id}', 'OrdersController@destroy')->name('deleteFromOrders');
+// Route::get('/totalOrderAmount/{$id}', 'OrdersController@totalOrderAmount')->name('totalOrderAmount');
+
 
 Route::get('/minus/{id}', ['uses' => 'CartController@minus','as' => 'cart.minus']);
 Route::get('/add/{id}', ['uses' => 'CartController@add','as' => 'cart.add']);

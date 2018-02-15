@@ -8,7 +8,6 @@ use App\User;
 use App\Cart;
 use Auth;
 use App\Helpers\CartHelper;
-// use App\Http\Controllers\Controller;
 
 class OrdersController extends Controller
 
@@ -29,7 +28,8 @@ class OrdersController extends Controller
      */
 
 
-
+  // $orders = Orders::WHERE ('user_id', $userId)->WHERE ('total_amount', $totalOrderAmount)->get();
+  // $totalOrderAmount = $orders->sum('total_amount');
 
     public function index()
     {
@@ -48,24 +48,18 @@ class OrdersController extends Controller
       } else {
         $ordersHeading = "You have " . $ordersSize . " orders";
       }
-      // return $ordersSize;
-      // dd($ordersSize);
-
-      // $orderId = $orders->id;
-      // dd($orderId);
-      // $carts = Cart::WHERE ('order_id', $orderId)->get();
-      //
-      // foreach ($carts as $cart) {
-      //   $dishId = $cart->id;
-      //
+      // foreach ($orders as $order){
+      //   $totalOrdersAmount = 0;
+      //   $totalOrdersAmount = $totalOrdersAmount + $order->total_amount;
       // }
-      // $dishes = Dishes::WHERE ('id', $dishesId)->get();
 
+      $totalOrdersAmount = Orders::WHERE ('user_id', $userId)->sum('total_amount');
 
       return view('orders', [
           'orders' => $orders,
           'ordersSize' => $ordersSize,
-          'ordersHeading' => $ordersHeading
+          'ordersHeading' => $ordersHeading,
+          'totalOrdersAmount' => $totalOrdersAmount
       ]);
 
 
@@ -92,11 +86,11 @@ class OrdersController extends Controller
       // $orders = Auth::user()->orders;
       //else go to route register user
 
-      $orders->transform (function($order, $key){
-        $order->cart = $order->cart;
-        return $order;
-      });
-      return view ('orders',['orders' => $orders]);
+      // $orders->transform (function($order, $key){
+      //   $order->cart = $order->cart;
+      //   return $order;
+      // });
+      // return view ('orders',['orders' => $orders]);
 
     }
 

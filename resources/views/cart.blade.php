@@ -42,7 +42,7 @@
           <p>
             <a href="{{ route('cart.minus', ['id'=> $cart->dishes->id]) }}" class="btn btn-primary">-</a>
             {{$cart->count}}
-            <a href="{{ route('cart.add', ['id'=>$cart->dishes->id]) }}" class="btn btn-primary">+</a>
+              <a href="{{ route('cart.add', ['id'=>$cart->dishes->id]) }}" class="btn btn-primary">+</a>
           </p>
         </div>
 
@@ -58,8 +58,6 @@
 
     </div>
   </div>
-
-
 
 
   <div class="row">

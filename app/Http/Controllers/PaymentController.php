@@ -20,8 +20,10 @@ class PaymentController extends Controller
     {
       $userId = Auth::user()->id;
       $orders = Orders::WHERE ('user_id', $userId)->get();
+      $totalOrdersAmount = Orders::WHERE ('user_id', $userId)->sum('total_amount');
       return view('payment', [
-          'orders' => $orders
+          'orders' => $orders,
+          'totalOrdersAmount' => $totalOrdersAmount
       ]);
     }
 

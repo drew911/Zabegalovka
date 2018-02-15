@@ -16,7 +16,7 @@ class CartController extends Controller
 
       $token = csrf_token();
 
-      $sameCart = Cart::WHERE('token', $token)->WHERE('dish_id', $id)->first();
+      $sameCart = Cart::WHERE('token', $token)->WHERE('order_id', NULL)->WHERE('dish_id', $id)->first();
 
       $count = $sameCart->count;
       $count++;
@@ -41,7 +41,7 @@ class CartController extends Controller
 
       $token = csrf_token();
 
-      $sameCart = Cart::WHERE('token', $token)->WHERE('dish_id', $id)->first();
+      $sameCart = Cart::WHERE('token', $token)->WHERE('order_id', NULL)->WHERE('dish_id', $id)->first();
 
       $count = $sameCart->count;
       $count--;
@@ -106,7 +106,7 @@ class CartController extends Controller
 
       $cart->dish_id = $request->id;
 
-      $sameCart = Cart::WHERE('token', $cart->token)->WHERE('dish_id', $cart->dish_id)->first();
+      $sameCart = Cart::WHERE('token', $cart->token)->WHERE('order_id', NULL)->WHERE('dish_id', $cart->dish_id)->first();
       if (is_null($sameCart)) {
           $cart->save();
       } else {

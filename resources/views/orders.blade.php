@@ -38,6 +38,26 @@
 </div>
 
 <div class="container">
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+
+      <!-- <div class="col-md-2">
+        <h4>Total price: {{number_format($beforeTaxes,2)}} &euro; </h4>
+      </div>
+      <div class="col-md-2">
+        <h4>VAT = {{number_format($vat,2)}} &euro; </h4>
+      </div> -->
+      <div class="col-md-6">
+        <h4>Total price with VAT: {{$totalOrdersAmount}} &euro; </h4>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="container">
   <div class="row">
     <div class="col-md-12">
       <a href="{{route('payment')}}" class="btn btn-big" role="button">Pay for all</a>
