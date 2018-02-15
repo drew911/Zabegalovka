@@ -63,20 +63,22 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-        <div class="col-md-4">
-          <h3>Cart information</h3>
+        <div class="col-md-1">
         </div>
         <div class="col-md-2">
-          <h4>{{$cartSize}} items selected</h4>
+          <h3>{{$cartSize}} items selected</h3>
+        </div>
+        <div class="col-md-3">
+          <h3>Total price: {{number_format($beforeTaxes,2)}} &euro; </h3>
         </div>
         <div class="col-md-2">
-          <h4>Total price: {{number_format($beforeTaxes,2)}} &euro; </h4>
+          <h3>VAT = {{number_format($vat,2)}} &euro; </h3>
         </div>
-        <div class="col-md-2">
-          <h4>VAT = {{number_format($vat,2)}} &euro; </h4>
+        <div class="col-md-3">
+          <h3>Total price with VAT: {{number_format($totalPrice,2)}} &euro; </h3>
         </div>
-        <div class="col-md-2">
-          <h4>Total price with VAT: {{number_format($totalPrice,2)}} &euro; </h4>
+        <div class="col-md-1">
+
         </div>
       </div>
     </div>
