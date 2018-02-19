@@ -109,3 +109,25 @@ h3 {
 .row {
   margin-top: 50px;
 }
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.6;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+}
+
+.row-total {
+  background-color: #fcb14b;
+  padding-top: 40px;
+}
+.table>thead {
+  background-color: #fcb14b;
+  color: black;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding-top: 15px;
+    line-height: 1.6;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+}

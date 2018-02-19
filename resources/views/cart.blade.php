@@ -10,79 +10,55 @@
 </div>
 
 <div class="container">
+
+
   <div class="row">
     <div class="col-md-12">
 
 
-    <div class="row">
-      <div class="col-md-6">
-        <h3>Dishes</h3>
-      </div>
-      <div class="col-md-2">
-        <h3>Quantity</h3>
-      </div>
-      <div class="col-md-2">
-        <h3>Price</h3>
-      </div>
-      <div class="col-md-2">
-        <h3>Actions</h3>
-      </div>
-    </div>
 
-    @foreach ($carts as $cart)
-      <div class="row">
-        <div class="col-md-2">
-          <img class="img-responsive" src="{{$cart->dishes->image}}">
-        </div>
-        <div class="col-md-4">
-          <h4>{{$cart->dishes->name}}</h4>
-        </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" colspan="2">Dishes</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($carts as $cart)
+      <tr>
+        <td><img style="width:150px" class="img-static" src="{{$cart->dishes->image}}"></td>
+        <td class="middle"><h4>{{$cart->dishes->name}}</h4></td>
+        <td class="middle"><p>
+          <a href="{{ route('cart.minus', ['id'=> $cart->dishes->id]) }}" class="btn btn-primary">-</a>
+          {{$cart->count}}
+          <a href="{{ route('cart.add', ['id'=>$cart->dishes->id]) }}" class="btn btn-primary">+</a></p>
+        </td>
+        <td class="middle"><p> {{($cart->dishes->price) * ($cart->count)}} &euro; </p></td>
+        <td class="middle"><a class="btn btn-danger" href="{{route('deleteFromCart', $cart->id)}}">Remove from cart</a></td>
+      </tr>
+      @endforeach
 
-        <div class="col-md-2">
-          <p>
-            <a href="{{ route('cart.minus', ['id'=> $cart->dishes->id]) }}" class="btn btn-primary">-</a>
-            {{$cart->count}}
-              <a href="{{ route('cart.add', ['id'=>$cart->dishes->id]) }}" class="btn btn-primary">+</a>
-          </p>
-        </div>
+      <tr class="row-total">
+        <td colspan="2"><p><b>{{$cartSize}} items</b> selected</p></td>
+        <td><p>Total price: <b>{{number_format($beforeTaxes,2)}} &euro;</b> </p></td>
+        <td><p>VAT = <b>{{number_format($vat,2)}} &euro;</b> </p></td>
+        <td><p>Total price with VAT: <b>{{number_format($totalPrice,2)}} &euro;</b> </p></td>
+      </tr>
 
-        <div class="col-md-2">
-          <p> {{($cart->dishes->price) * ($cart->count)}} &euro; </p>
-        </div>
-        <div class="col-md-2">
-          <a class="btn btn-danger" href="{{route('deleteFromCart', $cart->id)}}">Remove from cart</a>
-        </div>
-      </div>
-    @endforeach
-
+    </tbody>
+  </table>
 
     </div>
   </div>
 
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-2">
-          <h3>{{$cartSize}} items selected</h3>
-        </div>
-        <div class="col-md-3">
-          <h3>Total price: {{number_format($beforeTaxes,2)}} &euro; </h3>
-        </div>
-        <div class="col-md-2">
-          <h3>VAT = {{number_format($vat,2)}} &euro; </h3>
-        </div>
-        <div class="col-md-3">
-          <h3>Total price with VAT: {{number_format($totalPrice,2)}} &euro; </h3>
-        </div>
-        <div class="col-md-1">
 
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+
 
   <div class="row">
     <div class="col-md-12">

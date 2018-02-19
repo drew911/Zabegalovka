@@ -21,12 +21,12 @@
           <h3>Rekvizitai</h3>
           <p>Bank: Gringots bank </br>
              Bank account number: HR 36465647272683863 </br>
-             Payment purpose:order ID
+             Payment purpose: <b>Order Nr
              @foreach ($orders as $order)
-             {{$order->id}} ,
+             {{$order->id}},
              @endforeach
-            </br>
-             Total amount: {{$totalOrdersAmount}}
+              </b></br>
+             Total amount: <b>{{$totalOrdersAmount}} &euro;</b>
             </br>
           </p>
       </div>
@@ -38,17 +38,17 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-2">
-        <a class="navbar-brand" href="{{ 'https://ib.dnb.lt/' }}">
+        <a class="navbar-brand" target="_blank" href="{{ 'https://ib.dnb.lt/' }}">
           <img src="{{ url('storage/photos/bank-1.jpg') }}">
         </a>
       </div>
       <div class="col-md-2">
-        <a class="navbar-brand" href="{{ 'https://e.seb.lt/mainib/web.p' }}">
+        <a class="navbar-brand" target="_blank" href="{{ 'https://e.seb.lt/mainib/web.p' }}">
           <img src="{{ url('storage/photos/bank-2.jpg') }}">
         </a>
       </div>
       <div class="col-md-2">
-        <a class="navbar-brand" href="{{ 'https://ib.swedbank.lt/private' }}">
+        <a class="navbar-brand" target="_blank" href="{{ 'https://ib.swedbank.lt/private' }}">
           <img src="{{ url('storage/photos/bank-3.jpg') }}">
         </a>
       </div>
